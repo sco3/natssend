@@ -1,4 +1,5 @@
 use async_nats::jetstream;
+use async_nats::connect;
 use flate2::read::GzDecoder;
 use std::env::args;
 use std::fs::File;
@@ -20,10 +21,9 @@ async fn main() {
 
                 match decoder.read_to_end(&mut data) {
                     Ok(_) => {
-                        let client = async_nats::connect(nats_url).await;
+                        let client = connect(nats_url).await;
                         match client {
                             Ok(client) => {
-                                //let _inbox = client.new_inbox();
                                 let jetstream = jetstream::new(client);
                                 let result = jetstream.publish(subject, data.into()).await;
                                 match result {
