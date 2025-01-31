@@ -51,7 +51,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
         }
     } else {
-        print!("natssend <sub> <file> [<nats url>]");
+        print!("natssend <subject> <file> [<nats url>]");
     }
 
     Ok(())
