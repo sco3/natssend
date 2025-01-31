@@ -1,5 +1,5 @@
-use async_nats::jetstream;
 use async_nats::connect;
+use async_nats::jetstream;
 use flate2::read::GzDecoder;
 use std::env::args;
 use std::fs::File;
@@ -8,8 +8,9 @@ use tokio;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    if args().len() < 2 {
+    if args().len() < 3 {
         print!("natssend <subject> <file> [<nats url>]");
+        return Ok(());
     }
     let subject = args().nth(1).expect("Subject to send data to");
     let filename = args().nth(2).expect("File to send");
