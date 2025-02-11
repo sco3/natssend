@@ -10,11 +10,6 @@ flate2 = { version="1.0.35",default-features = false, features = ["rust_backend"
 tokio = { version = "1.43.0", features = ["full"] }
 
 [profile.release]
-opt-level = "z"   # Optimize for size
-lto = true        # Enable Link Time Optimization
-strip = true      # Remove debug symbols
-codegen-units = 1 # Improve optimization (slower compilation)
-panic = "abort"   # Reduce panic handling overhead
 
 [[bin]]
 name="natssend"
