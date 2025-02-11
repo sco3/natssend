@@ -15,6 +15,3 @@ tokio = { version = "1.43.0", features = ["full"] }
 name="natssend"
 path="src/main.rs"
 
-[[bin]]
-name="natssend-unsafe"
-path="src/main-unsafe.rs"
