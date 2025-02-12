@@ -13,12 +13,12 @@ fn help(s: &str) -> String {
 
 async fn send() -> Result<(), Box<dyn std::error::Error>> {
     let subject = args().nth(1).ok_or_else(|| help("Param: subject"))?;
-    let filename = args().nth(2).ok_or_else(|| help("Param: File"))?;
+    let filename = args().nth(2).ok_or_else(|| help("Param: file"))?;
     let nats_url = args().nth(3).unwrap_or("nats://localhost:4222".to_string());
 
     let mut data = Vec::new();
 
-    if filename == String::from("-") {
+    if filename == "-" {
         io::stdin().read_to_end(&mut data).unwrap();
     } else {
         let mut file = File::open(&filename).unwrap();
