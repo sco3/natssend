@@ -8,7 +8,7 @@ use tokio;
 
 fn help(s: &str) -> String {
     //println!("{}", s);
-    println!("Help: natssend <subjet> <file[.gz]> [<nats_url>]");
+    println!("Help: natssend <subjet> <file[.gz]| - > [<nats_url>]");
     return s.to_string();
 }
 
