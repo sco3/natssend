@@ -12,7 +12,7 @@ fn help(s: &str) -> String {
 }
 
 async fn send() -> Result<(), Box<dyn std::error::Error>> {
-    let subject = args().nth(1).ok_or_else(|| help("Param: Subject"))?;
+    let subject = args().nth(1).ok_or_else(|| help("Param: subject"))?;
     let filename = args().nth(2).ok_or_else(|| help("Param: File"))?;
     let nats_url = args().nth(3).unwrap_or("nats://localhost:4222".to_string());
 
