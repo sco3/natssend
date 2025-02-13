@@ -7,7 +7,7 @@ use std::io::Read;
 use tokio;
 
 fn help(s: &str) -> String {
-    println!("Help: natssend <subjet> <file[.gz]| - > [<nats_url>]");
+    println!("Help: natssend <subject> <file[.gz]| - > [<nats_url>]");
     return s.to_string();
 }
 
