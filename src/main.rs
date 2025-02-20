@@ -1,4 +1,4 @@
-use async_nats::{connect, jetstream};
+use async_nats::connect;
 use flate2::read::GzDecoder;
 use std::env::args;
 use std::fs::File;
@@ -31,19 +31,23 @@ async fn send() -> Result<(), Box<dyn std::error::Error>> {
             file.read_to_end(&mut data).unwrap();
         }
     }
+    //let s = String::from_utf8(data.clone()).unwrap();
+    //println!("data: {}", s);
 
     let client = connect(nats_url).await?;
-    let jetstream = jetstream::new(client);
     let len = data.len();
-    jetstream.publish(subject.clone(), data.into()).await?;
-    println!("Published {} bytes to subject: {}.", len, subject);
+    client.publish(subject.clone(), data.into()).await?;
+    client.flush().await?;
+    println!("Published {} bytes to subject: {}", len, subject);
     return Ok(());
 }
 
 #[tokio::main]
 async fn main() {
     match send().await {
-        Ok(_) => {}
+        Ok(r) => {
+            println!("Ok: {:?}", r)
+        }
         Err(e) => {
             println!("Error: {}", e);
         }
