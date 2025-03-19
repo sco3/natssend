@@ -3,3 +3,4 @@ target/
 .idea
 .theia
 .vscode
+.project
