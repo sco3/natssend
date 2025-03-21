@@ -27,7 +27,7 @@ async fn send() -> Result<(), Box<dyn Error>> {
         let mut file = File::open(&filename).unwrap();
 
         if filename.ends_with(".gz") {
-            println!("Try ungzip: {}", filename);
+            info!("Try ungzip: {}", filename);
             let mut decoder = GzDecoder::new(file);
             decoder.read_to_end(&mut data).unwrap();
         } else {
