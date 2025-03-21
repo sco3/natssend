@@ -38,9 +38,7 @@ async fn send() -> Result<(), Box<dyn Error>> {
     let client = connect(url).await?;
     let js = jetstream::new(client);
     let len = data.len();
-    let pub_ack = js
-        .publish(subject.clone(), data.into()) //
-        .await?;
+    let pub_ack = js.publish(subject.clone(), data.into()).await?;
 
     let ack = pub_ack.await?;
 
